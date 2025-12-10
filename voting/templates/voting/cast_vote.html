@@ -1,0 +1,19 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Vote for: {{ election.title }}</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {% for candidate in candidates %}
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="candidate" value="{{ candidate.id }}" id="candidate{{ forloop.counter }}" required>
+            <label class="form-check-label" for="candidate{{ forloop.counter }}">
+                {{ candidate.name }} {% if candidate.party %} ({{ candidate.party }}) {% endif %}
+            </label>
+        </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary mt-3">Submit Vote</button>
+    </form>
+</div>
+{% endblock %}

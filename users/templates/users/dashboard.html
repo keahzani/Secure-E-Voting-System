@@ -1,0 +1,35 @@
+{% extends 'base_generic.html' %}
+{% load static %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'users/css/custom.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Welcome, {{ user.username }}</h2>
+
+    <h2>Elections You Can Vote In</h2>
+{% if eligible_elections %}
+    <ul>
+    {% for election in eligible_elections %}
+        <li>{{ election.title }} (Ends {{ election.end_time|date:"M d, Y H:i" }})</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No elections available.</p>
+{% endif %}
+
+<h2>Elections You've Voted In</h2>
+{% if voted_elections %}
+    <ul>
+    {% for election in voted_elections %}
+        <li>{{ election.title }} - Voted</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>You haven't voted in any election yet.</p>
+{% endif %}
+    </ul>
+</div>
+{% endblock %}

@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Environments
+venv/
+.env
+*.env
+
+# Django static/media
+staticfiles/
+media/
+static/
+
+# SQLite database (optional: keep if you want; ignore if auto-generated)
+db.sqlite3
+
+# VSCode
+.vscode/
+
+# Logs
+*.log
+
+# Django migrations (optional: keep your custom apps migrations)
+*/migrations/__pycache__/
+*/migrations/*.pyc
+
+# OS generated files
+.DS_Store
+Thumbs.db

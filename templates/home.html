@@ -1,0 +1,15 @@
+{% extends 'base_generic.html' %}
+
+{% block title %}Home - Secure E-Voting{% endblock %}
+
+{% block content %}
+<div class="container mt-5 text-center">
+    <h1 class="mb-4">Welcome to the Secure E-Voting System</h1>
+    <p class="lead">Your vote matters. Participate in transparent, secure, and accessible digital elections.</p>
+
+    <div class="mt-5">
+        <a href="{% url 'register' %}" class="btn btn-primary btn-lg me-3">Register</a>
+        <a href="{% url 'login' %}" class="btn btn-success btn-lg">Login</a>
+    </div>
+</div>
+{% endblock %}

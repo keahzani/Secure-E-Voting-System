@@ -1,0 +1,59 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Election Results: {{ election.title }}</h1>
+
+    {% if results %}
+        <!-- Chart Display -->
+        <canvas id="resultsChart" width="400" height="200"></canvas>
+
+        <!-- Table Display -->
+        <table class="table mt-4">
+            <thead>
+                <tr>
+                    <th>Candidate</th>
+                    <th>Votes</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for result in results %}
+                    <tr>
+                        <td>{{ result.candidate__name }}</td>
+                        <td>{{ result.vote_count }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No votes have been cast in this election yet.</p>
+    {% endif %}
+</div>
+
+<!-- Chart.js Script -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('resultsChart').getContext('2d');
+    const chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: [{% for result in results %}"{{ result.candidate__name }}",{% endfor %}],
+            datasets: [{
+                label: 'Votes',
+                data: [{% for result in results %}{{ result.vote_count }},{% endfor %}],
+                backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    precision: 0
+                }
+            }
+        }
+    });
+</script>
+{% endblock %}
