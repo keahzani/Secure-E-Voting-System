@@ -1,5 +1,3 @@
-Here is your complete, polished, ready-to-paste README.md — all in ONE file exactly as you requested.
-
 # Secure E-Voting System
 
 A secure, accessible, and user-friendly electronic voting web application built using **Python and Django**.  
